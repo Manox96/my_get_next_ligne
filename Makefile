@@ -6,13 +6,13 @@
 #    By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 16:37:13 by aennaqad          #+#    #+#              #
-#    Updated: 2023/12/06 23:00:23 by aennaqad         ###   ########.fr        #
+#    Updated: 2023/12/09 18:22:43 by aennaqad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 FLAGS = -Wall -Werror -Wextra
-SRC = get_next_ligne.c 
+SRC = get_next_line.c get_next_line_utils.c
 OBJ = $(SRC:.c = .o)
 NAME = get_next_ligne.a
 AR = ar -rcs

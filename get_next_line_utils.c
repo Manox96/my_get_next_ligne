@@ -6,7 +6,7 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:09:53 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/06 11:11:42 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:32:32 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 char *my_strchr(const char *s, int c)
 {
 	int i;
-	char *tab;
-	i = 0;
 
+	i = 0;
+	if (s == NULL)
+		return NULL;
 	while (s[i])
 	{
 		if (s[i] == c)
@@ -34,6 +35,8 @@ size_t my_strlen(const char *s)
 {
 	size_t i;
 
+	if (!s)
+		return 0;
 	i = 0;
 	while (s[i])
 		i++;
@@ -54,33 +57,7 @@ char *my_strdup(const char *s1)
 	return (tab);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*mystr;
-	size_t	i;
-	size_t	newlen;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (start >= my_strlen(s))
-		return (my_strdup(""));
-	newlen = my_strlen(s + start);
-	if (len > newlen)
-		len = newlen;
-	mystr = malloc((len + 1) * sizeof(char));
-	if (!mystr)
-		return (NULL);
-	while (i < len)
-	{
-		mystr[i] = s[start + i];
-		i++;
-	}
-	mystr[i] = '\0';
-	return (mystr);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*my_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -105,3 +82,35 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (joined);
 }
 
+/*-----------------Calloc-----------------------*/
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*tob;
+
+	tob = (unsigned char *)b;
+	i = 0;
+	while (i < len)
+	{
+		*(tob + i) = (unsigned char)c;
+		i++;
+	}
+	return (tob);
+}
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
+void	*ft_calloc(size_t count, size_t size)
+{
+	unsigned char	*tab;
+
+	if (count * size > SIZE_MAX)
+		return (NULL);
+	tab = (void *)malloc(((count * size) * sizeof(char)));
+	if (!tab)
+		return (NULL);
+	ft_bzero(tab, size * count);
+	return (tab);
+}
+/*-----------------End Calloc Functions-----------------------*/
