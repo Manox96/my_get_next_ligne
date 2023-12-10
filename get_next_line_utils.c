@@ -6,12 +6,11 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:09:53 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/09 17:32:32 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:17:46 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdlib.h>
 
 char	*my_strchr(const char *s, int c)
 {
@@ -34,15 +33,13 @@ size_t	my_strlen(const char *s)
 {
 	size_t	i;
 
-	if (!s)
-		return (0);
 	i = 0;
 	while (s[i])
 		i++;
 	return (i);
 }
 
-char	*my_strdup(const char *s1)
+char	*mystrdup(const char *s1)
 {
 	char		*tab;
 	int			i;
@@ -67,9 +64,9 @@ char	*my_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (my_strdup(s2));
+		return (mystrdup(s2));
 	if (!s2)
-		return (my_strdup(s1));
+		return (mystrdup(s1));
 	joined = malloc(((my_strlen(s1) + my_strlen(s2)) + 1) * sizeof(char));
 	if (!joined)
 		return (NULL);
