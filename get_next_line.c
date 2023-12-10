@@ -12,27 +12,28 @@
 
 #include "get_next_line.h"
 
-
-char	*append_char(char *str1 ,char*str2)
+char	*append_char(char *str1, char*str2)
 {
 	char	*temp;
 
 	temp = my_strjoin(str1, str2);
 	free(str1);
-	return temp;
+	return (temp);
 }
 
 char	*nex_line(char *str)
 {
-	size_t	i = 0;
-	size_t	j = 0;
+	size_t		i;
+	size_t		j;
 	char		*nexto;
 
+	i = 0;
+	j = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
 	i++;
 	nexto = ft_calloc(my_strlen(str) - i, sizeof(char));
-	if(!nexto)
+	if (!nexto)
 		return (free(str), NULL);
 	while (str[i])
 	{
@@ -44,10 +45,10 @@ char	*nex_line(char *str)
 	free(str);
 	return (nexto);
 }
-/*--------------------------this for get one line from buffer -------------------------------*/
+
 static char	*one_line(char *str)
 {
-	ssize_t	i;
+	ssize_t		i;
 	char		*myline;
 
 	i = 0;
@@ -69,14 +70,14 @@ static char	*one_line(char *str)
 	myline[i] = '\0';
 	return (myline);
 }
-/*--------------------------this for get all line and make it into buffer-------------------------------*/
-static char	*read_from_file(char *buffer ,int fd)
+
+char	*read_from_file(char *buffer, int fd)
 {
 	char		*tab;
-	ssize_t	byteread;
+	ssize_t		byteread;
 
 	if (!buffer)
-		buffer = ft_calloc(1,1);
+		buffer = ft_calloc(1, 1);
 	tab = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!tab)
 		return (NULL);
@@ -93,13 +94,14 @@ static char	*read_from_file(char *buffer ,int fd)
 	return (buffer);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *buffer;
-	char			*line;
-	if (fd < 0 || read(fd, "", 0) < 0 ||BUFFER_SIZE < 0)
+	static char	*buffer;
+	char		*line;
+
+	if (fd < 0 || read(fd, "", 0) < 0 || BUFFER_SIZE < 0)
 		return (NULL);
-	buffer = read_from_file(buffer,fd);
+	buffer = read_from_file(buffer, fd);
 	line = one_line(buffer);
 	if (my_strlen(buffer) == 0)
 		return (NULL);
@@ -113,7 +115,6 @@ char *get_next_line(int fd)
 // 	char *lineone;
 // 	char *lineone1;
 // 	char *lineone2;
-
 
 // 	lineone = get_next_line(fd);
 // 	printf("line one : %s",lineone);
@@ -133,5 +134,3 @@ char *get_next_line(int fd)
 // 	free(lineone2);
 // 	return 0;
 // }
-
-

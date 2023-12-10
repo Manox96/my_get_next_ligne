@@ -13,41 +13,40 @@
 #include "get_next_line.h"
 #include <stdlib.h>
 
-
-char *my_strchr(const char *s, int c)
+char	*my_strchr(const char *s, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (s == NULL)
-		return NULL;
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (char *)(s + i);
+			return ((char *)(s + i));
 		else
 			i++;
 	}
 	return (NULL);
 }
 
-size_t my_strlen(const char *s)
+size_t	my_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	if (!s)
-		return 0;
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
 	return (i);
 }
 
-char *my_strdup(const char *s1)
+char	*my_strdup(const char *s1)
 {
-	int i;
-	size_t lenght;
-	char *tab;
+	char		*tab;
+	int			i;
+	size_t		lenght;
 
 	i = 0;
 	lenght = my_strlen(s1);
@@ -83,34 +82,24 @@ char	*my_strjoin(char const *s1, char const *s2)
 }
 
 /*-----------------Calloc-----------------------*/
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*tob;
 
-	tob = (unsigned char *)b;
-	i = 0;
-	while (i < len)
-	{
-		*(tob + i) = (unsigned char)c;
-		i++;
-	}
-	return (tob);
-}
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*tab;
+	size_t			i;
 
 	if (count * size > SIZE_MAX)
 		return (NULL);
 	tab = (void *)malloc(((count * size) * sizeof(char)));
 	if (!tab)
 		return (NULL);
-	ft_bzero(tab, size * count);
+	i = 0;
+	while (i < (size * count))
+	{
+		*(tab + i) = 0;
+		i++;
+	}
 	return (tab);
 }
+
 /*-----------------End Calloc Functions-----------------------*/
