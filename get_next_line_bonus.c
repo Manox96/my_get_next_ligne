@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:36:48 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/11 17:01:02 by aennaqad         ###   ########.fr       */
+/*   Created: 2023/12/11 15:24:31 by aennaqad          #+#    #+#             */
+/*   Updated: 2023/12/11 17:12:35 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-// i need to learn about
-// chnahow astatic variabl
-// fd fd fd fd fiin kitstoran 3lach ki pwanti
-// chnahowa file ofsset
-//
+#include "get_next_line_bonus.h"
 
 char	*append_char(char *str1, char*str2)
 {
@@ -105,65 +100,23 @@ char	*read_from_file(char *all, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*all;
+	static char	*all[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || read(fd, "", 0) < 0 || fd > OPEN_MAX
 		|| BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
-		return (free(all), all = NULL, NULL);
-	all = read_from_file(all, fd);
-	line = one_line(all);
+	{
+		if (fd < 0 || fd > OPEN_MAX)
+			return (NULL);
+		else
+			return (free(all[fd]), all[fd] = NULL, NULL);
+	}
+	all[fd] = read_from_file(all[fd], fd);
+	line = one_line(all[fd]);
 	if (!line)
-		return (all = NULL, NULL);
-	if (my_strlen(all) == 0)
-		return (all = NULL, NULL);
-	all = nex_line(all);
+		return (all[fd] = NULL, NULL);
+	if (my_strlen(all[fd]) == 0)
+		return (all[fd] = NULL, NULL);
+	all[fd] = nex_line(all[fd]);
 	return (line);
 }
-// int main()
-// {
-// 	int fd = open("fileee.txt",O_RDONLY);
-// 	int fds = open("fileex.txt",O_RDONLY);
-// 	char *lineonet;
-// 	char *lineone;
-// 	char *lineone1;
-// 	char *lineone2;
-
-// 	lineone = get_next_line(fd);
-// 	printf("line one : %s",lineone);
-// 	free(lineone);
-// 	printf("*-----*\n");
-// 	lineonet = get_next_line(fds);
-// 	printf("line two : %s",lineonet);
-// 	free(lineonet);
-// 	printf("*-----*\n");
-// 	lineone1 = get_next_line(fd);
-// 	printf("line three : %s",lineone1);
-// 	free(lineone1);
-// 	printf("*-----*\n");
-
-// 	lineone2 = get_next_line(fds);
-// 	printf("line four : %s",lineone2);
-// 	free(lineone2);
-// 	return 0;
-// }
-
-// #include <libc.h>
-
-// #include "get_next_line.h"
-// #include <sys/fcntl.h>
-// int main()
-// {
-// 	char *line;
-
-// 	int fd = open("Makefile", O_RDWR);
-// 	line = get_next_line(fd);
-// 		printf("line = %s", line);
-
-// 	while(line)
-// 	{
-// 		printf("line = %s", line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// }
