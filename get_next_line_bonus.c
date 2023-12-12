@@ -6,7 +6,7 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:24:31 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/11 17:12:35 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:49:24 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,14 @@ char	*one_line(char *str)
 
 char	*read_from_file(char *all, int fd)
 {
-	char		*buffer;
-	ssize_t		byteread;
+	char			*buffer;
+	ssize_t			byteread;
+	size_t			size;
 
 	if (!all)
 		all = ft_calloc(1, sizeof(char));
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	size = (size_t)BUFFER_SIZE + 1;
+	buffer = malloc((size) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	byteread = 1;
@@ -112,6 +114,8 @@ char	*get_next_line(int fd)
 			return (free(all[fd]), all[fd] = NULL, NULL);
 	}
 	all[fd] = read_from_file(all[fd], fd);
+	if (!all[fd])
+		return (NULL);
 	line = one_line(all[fd]);
 	if (!line)
 		return (all[fd] = NULL, NULL);

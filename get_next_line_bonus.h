@@ -6,7 +6,7 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:24:29 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/11 17:13:02 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:43:23 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	*get_next_line(int fd);
 char	*my_strchr(const char *s, int c);
 size_t	my_strlen(const char *s);
 char	*mystrdup(const char *s1);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*my_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t count, size_t size);
 

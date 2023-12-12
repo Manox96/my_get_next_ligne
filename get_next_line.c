@@ -6,16 +6,11 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:36:48 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/11 17:01:02 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:14:45 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-// i need to learn about
-// chnahow astatic variabl
-// fd fd fd fd fiin kitstoran 3lach ki pwanti
-// chnahowa file ofsset
-//
 
 char	*append_char(char *str1, char*str2)
 {
@@ -80,12 +75,14 @@ char	*one_line(char *str)
 
 char	*read_from_file(char *all, int fd)
 {
-	char		*buffer;
-	ssize_t		byteread;
+	char			*buffer;
+	ssize_t			byteread;
+	size_t			size;
 
 	if (!all)
 		all = ft_calloc(1, sizeof(char));
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	size = (size_t)BUFFER_SIZE + 1;
+	buffer = malloc((size) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	byteread = 1;
@@ -112,6 +109,8 @@ char	*get_next_line(int fd)
 		|| BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (free(all), all = NULL, NULL);
 	all = read_from_file(all, fd);
+	if (!all)
+		return (NULL);
 	line = one_line(all);
 	if (!line)
 		return (all = NULL, NULL);
@@ -120,50 +119,3 @@ char	*get_next_line(int fd)
 	all = nex_line(all);
 	return (line);
 }
-// int main()
-// {
-// 	int fd = open("fileee.txt",O_RDONLY);
-// 	int fds = open("fileex.txt",O_RDONLY);
-// 	char *lineonet;
-// 	char *lineone;
-// 	char *lineone1;
-// 	char *lineone2;
-
-// 	lineone = get_next_line(fd);
-// 	printf("line one : %s",lineone);
-// 	free(lineone);
-// 	printf("*-----*\n");
-// 	lineonet = get_next_line(fds);
-// 	printf("line two : %s",lineonet);
-// 	free(lineonet);
-// 	printf("*-----*\n");
-// 	lineone1 = get_next_line(fd);
-// 	printf("line three : %s",lineone1);
-// 	free(lineone1);
-// 	printf("*-----*\n");
-
-// 	lineone2 = get_next_line(fds);
-// 	printf("line four : %s",lineone2);
-// 	free(lineone2);
-// 	return 0;
-// }
-
-// #include <libc.h>
-
-// #include "get_next_line.h"
-// #include <sys/fcntl.h>
-// int main()
-// {
-// 	char *line;
-
-// 	int fd = open("Makefile", O_RDWR);
-// 	line = get_next_line(fd);
-// 		printf("line = %s", line);
-
-// 	while(line)
-// 	{
-// 		printf("line = %s", line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// }

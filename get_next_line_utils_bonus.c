@@ -6,7 +6,7 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:24:26 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/11 15:26:18 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:23:43 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ char	*my_strjoin(char const *s1, char const *s2)
 	return (joined);
 }
 
-/*-----------------Calloc-----------------------*/
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*tab;
@@ -98,5 +96,3 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	return (tab);
 }
-
-/*-----------------End Calloc Functions-----------------------*/

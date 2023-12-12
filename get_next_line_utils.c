@@ -6,7 +6,7 @@
 /*   By: aennaqad <aennaqad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:09:53 by aennaqad          #+#    #+#             */
-/*   Updated: 2023/12/10 17:17:46 by aennaqad         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:23:35 by aennaqad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,11 @@ char	*my_strjoin(char const *s1, char const *s2)
 	return (joined);
 }
 
-/*-----------------Calloc-----------------------*/
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*tab;
 	size_t			i;
 
-	if (count * size > SIZE_MAX)
-		return (NULL);
 	tab = (void *)malloc(((count * size) * sizeof(char)));
 	if (!tab)
 		return (NULL);
@@ -98,5 +94,3 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	return (tab);
 }
-
-/*-----------------End Calloc Functions-----------------------*/
